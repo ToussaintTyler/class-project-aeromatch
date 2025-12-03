@@ -3,9 +3,81 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
- <link rel="stylesheet" href="styling.css">
 <title>AeroMatch</title>
 
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #0f1e2e;
+        color: #fff;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+    }
+
+    #app {
+        background: #14273d;
+        padding: 20px;
+        border-radius: 10px;
+        max-width: 500px;
+        width: 100%;
+        box-shadow: 0 0 15px #000;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        margin-top: 10px;
+        background: #1e90ff;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        border-radius: 6px;
+        font-size: 16px;
+        transition: 0.2s;
+    }
+    button:hover { background: #63b3ff; }
+
+    .question {
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+
+    /* Animated progress bar */
+    .progress-container {
+        width: 100%;
+        height: 14px;
+        background: #00101f;
+        border-radius: 20px;
+        overflow: hidden;
+        margin-bottom: 12px;
+        box-shadow: inset 0 0 5px rgba(0,0,0,0.6);
+    }
+
+    .progress-bar {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, #1e90ff, #6bb6ff);
+        transition: width 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+
+    .progress-text {
+        text-align: right;
+        font-size: 14px;
+        opacity: 0.8;
+        margin-bottom: 10px;
+    }
+
+    .result {
+        font-size: 20px;
+        margin-top: 20px;
+        text-align: center;
+        padding: 10px;
+        background: #0b1a28;
+        border-radius: 10px;
+    }
+</style>
 </head>
 <body>
 
@@ -42,17 +114,21 @@ function renderQuestion() {
     const q = questions[index];
 
     container.innerHTML = `
+        <div class="progress-text">${progressPercent}% Complete</div>
+
         <div class="progress-container">
-            <div class="progress-bar" style="width:${progressPercent}%"></div>
+            <div class="progress-bar" id="progress-bar"></div>
         </div>
+
         <div class="question">${q.q}</div>
+
         ${q.options.map((opt, i) =>
             `<button onclick="select(${i})">${opt}</button>`
         ).join("")}
     `;
-}
 
-setTimeout(() => {
+    // Trigger animated progress fill
+    setTimeout(() => {
         document.getElementById("progress-bar").style.width = progressPercent + "%";
     }, 50);
 }
@@ -68,9 +144,9 @@ function select(choice) {
 
 function showResult() {
     let result = "";
-    if (scores.jet > scores.prop && scores.jet > scores.engineer) result = " F-16 Fighter Jet";
-    else if (scores.prop > scores.jet && scores.prop > scores.engineer) result = " Cessna 172 (General Aviation Pilot)";
-    else result = " Aerospace Engineer (Drone / Spacecraft)";
+    if (scores.jet > scores.prop && scores.jet > scores.engineer) result = "🏎️ F-16 Fighter Jet";
+    else if (scores.prop > scores.jet && scores.prop > scores.engineer) result = "🛩️ Cessna 172 (General Aviation)";
+    else result = "🛠️ Aerospace Engineer (Drone / Spacecraft)";
 
     document.getElementById("quiz-screen").innerHTML = `
         <div class="result">
