@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en"
+<html lang="en">
 <head>
-<meta charSet="UTF-8" />
+<meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet" href="styling.css">
-    
 <title>AeroMatch</title>
+
 </head>
 <body>
 
@@ -27,13 +26,13 @@ const questions = [
     { q: "Choose a sound:", options: ["Jet roar", "Prop hum", "Wind tunnel"] },
     { q: "Your aviation goal:", options: ["Adventure", "Service", "Discovery"] }
 ];
-    
+
 let index = 0;
 let scores = { jet: 0, prop: 0, engineer: 0 };
 
 function renderQuestion() {
     const container = document.getElementById("quiz-screen");
-    const progressPercent = Math.floor((index) / questions.length) * 100);
+    const progressPercent = Math.floor((index / questions.length) * 100);
 
     if (index >= questions.length) {
         return showResult();
@@ -43,7 +42,7 @@ function renderQuestion() {
 
     container.innerHTML = `
         <div class="progress-container">
-        <div class="progress-bar" style="width:${progressPercent}%"></div>
+            <div class="progress-bar" style="width:${progressPercent}%"></div>
         </div>
         <div class="question">${q.q}</div>
         ${q.options.map((opt, i) =>
@@ -63,9 +62,9 @@ function select(choice) {
 
 function showResult() {
     let result = "";
-    if (scores.jet > scores.prop && scores.jet > scores.engineer) result = " F-16 Fighter Jet";
-    else if (scores.prop > scores.jet && scores.prop > scores.engineer) result = " Cessna 172 (General Aviation Pilot)";
-    else result = " Aerospace Engineer (Drone / Spacecraft)";
+    if (scores.jet > scores.prop && scores.jet > scores.engineer) result = "🏎️ F-16 Fighter Jet";
+    else if (scores.prop > scores.jet && scores.prop > scores.engineer) result = "🛩️ Cessna 172 (General Aviation Pilot)";
+    else result = "🛠️ Aerospace Engineer (Drone / Spacecraft)";
 
     document.getElementById("quiz-screen").innerHTML = `
         <div class="result">
