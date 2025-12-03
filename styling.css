@@ -1,0 +1,58 @@
+body {
+        font-family: Arial, sans-serif;
+        background: #0f1e2e;
+        color: #fff;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+    }
+
+    #app {
+        background: #14273d;
+        padding: 20px;
+        border-radius: 10px;
+        max-width: 500px;
+        width: 100%;
+        box-shadow: 0 0 15px #000;
+        transition: 0.3s;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        margin-top: 10px;
+        background: #1e90ff;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        border-radius: 6px;
+        font-size: 16px;
+        transition: 0.2s;
+    }
+    button:hover { background: #63b3ff; }
+
+    .question { font-size: 18px; margin-bottom: 15px; }
+
+    .progress {
+        height: 10px;
+        background: #00101f;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: 15px;
+    }
+    .progress-bar {
+        height: 100%;
+        width: 0%;
+        background: #1e90ff;
+        transition: width 0.3s ease;
+    }
+
+    .result {
+        font-size: 20px;
+        margin-top: 20px;
+        text-align: center;
+        padding: 10px;
+        background: #0b1a28;
+        border-radius: 10px;
+    }
