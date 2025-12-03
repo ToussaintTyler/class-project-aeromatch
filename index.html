@@ -52,6 +52,11 @@ function renderQuestion() {
     `;
 }
 
+setTimeout(() => {
+        document.getElementById("progress-bar").style.width = progressPercent + "%";
+    }, 50);
+}
+
 function select(choice) {
     if (choice === 0) scores.jet++;
     if (choice === 1) scores.prop++;
