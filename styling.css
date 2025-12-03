@@ -34,18 +34,28 @@
 
     .question { font-size: 18px; margin-bottom: 15px; }
 
-    .progress {
-        height: 10px;
+    .progress-container {
+        width: 100%;
+        height: 14px;
         background: #00101f;
-        border-radius: 10px;
+        border-radius: 20px;
         overflow: hidden;
-        margin-bottom: 15px;
+        margin-bottom: 12px;
+        box-shadow: inset 0 0 5px rgba(0,0,0,0.6);
     }
+
     .progress-bar {
         height: 100%;
         width: 0%;
-        background: #1e90ff;
-        transition: width 0.3s ease;
+        background: linear-gradient(90deg, #1e90ff, #6bb6ff);
+        transition: width 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+
+    .progress-text {
+        text-align: right;
+        font-size: 14px;
+        opacity: 0.8;
+        margin-bottom: 10px;
     }
 
     .result {
