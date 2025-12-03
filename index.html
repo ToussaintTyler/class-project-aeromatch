@@ -63,9 +63,9 @@ function select(choice) {
 
 function showResult() {
     let result = "";
-    if (scores.jet > scores.prop && scores.jet > scores.engineer) result = "🏎️ F-16 Fighter Jet";
-    else if (scores.prop > scores.jet && scores.prop > scores.engineer) result = "🛩️ Cessna 172 (General Aviation Pilot)";
-    else result = "🛠️ Aerospace Engineer (Drone / Spacecraft)";
+    if (scores.jet > scores.prop && scores.jet > scores.engineer) result = " F-16 Fighter Jet";
+    else if (scores.prop > scores.jet && scores.prop > scores.engineer) result = " Cessna 172 (General Aviation Pilot)";
+    else result = " Aerospace Engineer (Drone / Spacecraft)";
 
     document.getElementById("quiz-screen").innerHTML = `
         <div class="result">
