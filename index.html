@@ -31,7 +31,7 @@ let scores = { jet: 0, prop: 0, engineer: 0 };
 
 function renderQuestion() {
     const container = document.getElementById("quiz-screen");
-    const progressPercent = ((index) / questions.length) * 100;
+    const progressPercent = ((index) / questions.length) * 100);
 
     if (index >= questions.length) {
         return showResult();
@@ -40,7 +40,9 @@ function renderQuestion() {
     const q = questions[index];
 
     container.innerHTML = `
-        <div class="progress"><div class="progress-bar" style="width:${progressPercent}%"></div></div>
+        <div class="progress-container">
+        <div class="progress-bar" style="width:${progressPercent}%"></div>
+        </div>
         <div class="question">${q.q}</div>
         ${q.options.map((opt, i) =>
             `<button onclick="select(${i})">${opt}</button>`
