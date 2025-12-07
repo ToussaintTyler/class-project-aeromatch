@@ -190,5 +190,57 @@ function showResult() {
 renderQuestion();
 </script>
 
+<div id="gauges" style="display:flex;justify-content:center;gap:40px;margin-top:60px;">
+<canvas id="airspeedGauge" width="150" height="150"></canvas>
+<canvas id="altimeterGauge" width="150" height="150"></canvas>
+<canvas id="compassGauge" width="150" height="150"></canvas>
+</div>
+
+<div id="weatherSection" style="margin-top:50px;text-align:center;color:white;">
+<h2>Live Weather (METAR Lookup)</h2>
+<input id="icaoInput" placeholder="Enter ICAO (e.g., KJFK)" style="padding:8px;border-radius:5px;">
+<button onclick="fetchWeather()" style="padding:8px 12px;border-radius:5px;">Get Weather</button>
+<pre id="weatherOutput" style="margin-top:20px;white-space:pre-wrap;"></pre>
+</div>
+
+<script>
+
+function drawGauge(ctx, value, max, label) {
+const radius = 60;
+ctx.clearRect(0,0,150,150);
+ctx.beginPath();
+ctx.arc(75,75,radius,0,2*Math.PI);
+ctx.strokeStyle = 'white';
+ctx.lineWidth = 4;
+ctx.stroke();
+
+const angle = (value / max) * Math.PI * 1.5 - Math.PI * 0.75;
+ctx.beginPath();
+ctx.moveTo(75,75);
+ctx.lineTo(75 + radius * Math.cos(angle), 75 + radius * Math.sin(angle));
+ctx.strokeStyle = 'red';
+ctx.lineWidth = 3;
+ctx.stroke();
+
+ctx.fillStyle = 'white';
+ctx.font = '14px sans-serif';
+ctx.fillText(label, 50, 140);
+}
+
+setInterval(() => {
+drawGauge(document.getElementById('airspeedGauge').getContext('2d'), Math.random()*160, 160, 'Airspeed');
+drawGauge(document.getElementById('altimeterGauge').getContext('2d'), Math.random()*10000, 10000, 'Altitude');
+drawGauge(document.getElementById('compassGauge').getContext('2d'), Math.random()*360, 360, 'Heading');
+}, 1000);
+
+async function fetchWeather() {
+const icao = document.getElementById('icaoInput').value.toUpperCase();
+if (!icao) return;
+const url = `https://aviationweather.gov/api/data/metar?ids=${icao}&format=json`;
+
+try {
+const res = await fetch(url);
+const data = await res.json();
+}
 </body>
 </html>
