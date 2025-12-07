@@ -17,11 +17,23 @@
     <div id="quiz-screen"></div>
 </div>
 
-<div class="gauges">
-    <canvas id="airspeedGauge" width="150" height="150"></canvas>
-    <canvas id="altimeterGauge" width="150" height="150"></canvas>
-    <canvas id="compassGauge" width="150" height="150"></canvas>
-</div>
+<section id="instruments" class="panel instruments">
+ 
+    <div class="gauge-col">
+      <canvas id="airspeedCanvas" width="220" height="220"></canvas>
+      <div class="gauge-label">Airspeed (kt)</div>
+    </div>
+
+    <div class="gauge-col">
+      <canvas id="altitudeCanvas" width="140" height="220"></canvas>
+      <div class="gauge-label">Altitude (ft)</div>
+    </div>
+
+    <div class="gauge-col">
+      <canvas id="headingCanvas" width="220" height="220"></canvas>
+      <div class="gauge-label">Heading</div>
+    </div>
+  </section>
 
 <div class="weather-section">
     <h2>Live METAR Weather</h2>
