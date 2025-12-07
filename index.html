@@ -241,6 +241,10 @@ const url = `https://aviationweather.gov/api/data/metar?ids=${icao}&format=json`
 try {
 const res = await fetch(url);
 const data = await res.json();
+} catch (err) {
+document.getElementById('weatherOutput').textContent = 'Error fetching weather.';
 }
+}
+</script>
 </body>
 </html>
