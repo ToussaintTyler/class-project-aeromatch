@@ -15,7 +15,7 @@ header {
     position: absolute;
     top: 100px;
     left: -150px; 
-    width: 50px; 
+    width: 80px; 
     opacity: 0.9;
     animation: flyAcross 15s linear infinite;
     z-index: 1000;
