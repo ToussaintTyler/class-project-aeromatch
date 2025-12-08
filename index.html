@@ -1,48 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-<link rel="stylesheet" href="styling.css"/>
-    
-<title>AeroMatch</title>
-</head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AeroMatch – Aviation Personality Quiz</title>
 
+    <link rel="stylesheet" href="style.css">
+
+</head>
 <body>
 
-<div id="app" class="app">
-    <img src="airplane.jpg" class="plane-icon">
-    <h2>✈ AeroMatch Quiz</h2>
-    <div id="quiz-screen"></div>
-</div>
+    <header>
+        <h1>AeroMatch ✈️</h1>
+        <p>Discover your ideal aircraft, flight path, or aviation career.</p>
+    </header>
 
-<section id="instruments" class="panel instruments">
- 
-    <div class="gauge-col">
-      <canvas id="airspeedCanvas" width="220" height="220"></canvas>
-      <div class="gauge-label">Airspeed (kt)</div>
+    <div id="quiz-container">
+
+        <div id="progress-wrapper">
+            <div id="progress-bar">
+                <span id="progress-text">0%</span>
+            </div>
+        </div>
+
+        <div id="question-box">
+            <h2 id="question"></h2>
+            <div id="answers"></div>
+        </div>
+
     </div>
 
-    <div class="gauge-col">
-      <canvas id="altitudeCanvas" width="140" height="220"></canvas>
-      <div class="gauge-label">Altitude (ft)</div>
+    <div id="result-container" class="hidden">
+        <h2>Your AeroMatch Result</h2>
+        <p id="result-text"></p>
+        <button onclick="window.location.reload()">Restart Quiz</button>
     </div>
 
-    <div class="gauge-col">
-      <canvas id="headingCanvas" width="220" height="220"></canvas>
-      <div class="gauge-label">Heading</div>
-    </div>
-  </section>
+    <section id="weather">
+        <h2>Live METAR Weather Lookup</h2>
+        <input id="icaoInput" placeholder="Enter ICAO (e.g., KJFK)" maxlength="4">
+        <button id="getWeatherBtn">Get Weather</button>
 
-<div class="weather-section">
-    <h2>Live METAR Weather</h2>
-    <input id="icaoInput" placeholder="Enter ICAO (KJFK, KMIA, KLAX)">
-    <button onclick="fetchWeather()">Get Weather</button>
-    <pre id="weatherOutput"></pre>
-</div>
+        <pre id="weatherOutput"></pre>
+    </section>
 
-<script src="script.js"></script>
+    <section id="gauges-section">
+        <h2>Boeing-Style Aircraft Gauges</h2>
 
+        <div id="gauges">
+            <canvas id="airspeedGauge" width="250" height="250"></canvas>
+            <canvas id="altitudeGauge" width="250" height="250"></canvas>
+            <canvas id="headingGauge" width="250" height="250"></canvas>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
 </body>
 </html>
