@@ -13,14 +13,15 @@ header {
 
 .plane-fly {
     position: absolute;
-    top: 10px;
-    left: -600px; 
+    top: 100px;
+    left: -150px; 
     width: 50px; 
     opacity: 0.9;
     animation: flyAcross 15s linear infinite;
+    z-index: 1000;
 }
 
-@keyframes fly {
+@keyframes flyAcross {
    from { right: -60px; top: 20px; opacity: 0.1; }
         to { right: 520px; top: 0px; opacity: 0.4; }
     }
