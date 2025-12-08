@@ -22,9 +22,10 @@ header {
 }
 
 @keyframes flyAcross {
-   from { right: -60px; top: 20px; opacity: 0.1; }
-        to { right: 520px; top: 0px; opacity: 0.4; }
-    }
+    0%   { left: -150px; transform: rotate(0deg); }
+    50%  { left: 100%; transform: rotate(5deg); }
+    100% { left: -150px; transform: rotate(0deg); }
+}
 
 #quiz-container {
     width: 90%;
