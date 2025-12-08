@@ -20,7 +20,7 @@ header {
     animation: flyAcross 15s linear infinite;
 }
 
-@keyframes flyAcross {
+@keyframes fly {
    from { right: -60px; top: 20px; opacity: 0.1; }
         to { right: 520px; top: 0px; opacity: 0.4; }
     }
