@@ -1,18 +1,18 @@
 const questions = [
-    { q: "Do you prefer high-speed aircraft or slow/stable ones?", a: ["High Speed", "Stable"] },
-    { q: "Would you rather fly solo or with a crew?", a: ["Solo", "With crew"] },
-    { q: "Do you enjoy complex systems?", a: ["Yes", "No"] },
-    { q: "Do you prefer long flights or short hops?", a: ["Long", "Short"] },
-    { q: "What motivates you most?", a: ["Adventure", "Precision"] },
-    { q: "Pick a sky:", a: ["Clear Blue", "Stormy Challenge"] },
-    { q: "Pick a role:", a: ["Pilot", "Engineer"] },
-    { q: "Pick a mission:", a: ["Passenger Flight", "Cargo"] },
-    { q: "Pick a style:", a: ["Modern Glass Cockpit", "Classic Analog"] },
-    { q: "Pick a future path:", a: ["Commercial", "Military"] }
+    { q: "You prefer flying that feels…", options: ["Fast", "Steady", "Technical"] },
+    { q: "Your ideal flight path is…", options: ["Long range", "Short hops", "High altitude"] },
+    { q: "Favorite aviation topic?", options: ["Speed", "Safety", "Engineering"] },
+    { q: "Pick a cockpit style:", options: ["Digital glass", "Simple analog", "Experimental"] },
+    { q: "You value…", options: ["Power", "Efficiency", "Innovation"] },
+    { q: "Dream job:", options: ["Pilot", "Flight Attendant", "Aerospace Engineer"] },
+    { q: "Your personality is…", options: ["Bold", "Calm", "Analytical"] },
+    { q: "Pick a sky:", options: ["Sunset", "Blue sky", "Starry night"] },
+    { q: "Choose a sound:", options: ["Jet roar", "Prop hum", "Wind tunnel"] },
+    { q: "Your aviation goal:", options: ["Adventure", "Service", "Discovery"] }
 ];
 
 let currentQuestion = 0;
-let score = 0;
+let scores = { jet: 0, prop: 0, engineer: 0 };
 
 const questionEl = document.getElementById("question");
 const answersEl = document.getElementById("answers");
@@ -57,30 +57,27 @@ function updateProgress() {
 }
 
 function showResult() {
-    document.getElementById("quiz-container").classList.add("hidden");
-    resultContainer.classList.remove("hidden");
 
-    if (score > 7) resultText.textContent = "You are a Boeing 787 Dreamliner — modern, efficient, and built for long-haul!";
-    else if (score > 4) resultText.textContent = "You are a Boeing 737 — reliable, balanced, a perfect all-rounder!";
-    else resultText.textContent = "You are a Cessna 172 — calm, stable, and perfect for training!";
-}
+    let result = "";
 
-document.getElementById("getWeatherBtn").onclick = async () => {
-    let icao = document.getElementById("icaoInput").value.toUpperCase();
-
-    if (!icao) return;
-
-    let url = `https://aviationweather.gov/api/data/metar?ids=${icao}&format=json`;
-
-    let res = await fetch(url);
-    let data = await res.json();
-
-    if (data && data[0]) {
-        document.getElementById("weatherOutput").textContent = data[0].rawOb;
-    } else {
-        document.getElementById("weatherOutput").textContent = "No METAR found.";
+    if (scores.jet > scores.prop && scores.jet > scores.engineer) {
+        result = "✈️ Airline Commercial Pilot — Bold, fast, and ready for global operations!";
     }
-};
+    else if (scores.prop > scores.jet && scores.prop > scores.engineer) {
+        result = "🛩️ Private Pilot — Calm, steady, and connected to the pure joy of flying.";
+    }
+    else {
+        result = "🛠️ Aircraft Engineer — Analytical, innovative, and built for problem-solving.";
+    }
+
+    document.getElementById("quiz-screen").innerHTML = `
+        <div class="result">
+            <h3>Your AeroMatch:</h3>
+            <p>${result}</p>
+        </div>
+        <button onclick="location.reload()">Restart Quiz</button>
+    `;
+}
 
 function drawGauge(canvasId, label, value, max, color) {
     let canvas = document.getElementById(canvasId);
