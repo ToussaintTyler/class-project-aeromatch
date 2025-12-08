@@ -130,3 +130,19 @@ setInterval(() => {
     drawGauge("altitudeGauge", "Altitude (ft)", 28000, 40000, "#00ff99");
     drawGauge("headingGauge", "Heading (°)", 270, 360, "#ffcc00");
 }, 2000);
+
+const helpBtn = document.getElementById("helpBtn");
+const helpModal = document.getElementById("helpModal");
+const closeHelp = document.getElementById("closeHelp");
+
+helpBtn.onclick = () => {
+    helpModal.classList.remove("hidden");
+};
+
+closeHelp.onclick = () => {
+    helpModal.classList.add("hidden");
+};
+
+helpModal.onclick = (e) => {
+    if (e.target === helpModal) helpModal.classList.add("hidden");
+};
