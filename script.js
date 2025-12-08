@@ -18,8 +18,6 @@ const questionEl = document.getElementById("question");
 const answersEl = document.getElementById("answers");
 const progressBar = document.getElementById("progress-bar");
 const progressText = document.getElementById("progress-text");
-const resultContainer = document.getElementById("result-container");
-const resultText = document.getElementById("result-text");
 
 loadQuestion();
 
@@ -28,18 +26,20 @@ function loadQuestion() {
     questionEl.textContent = q.q;
     answersEl.innerHTML = "";
 
-    q.a.forEach((answer) => {
+    q.options.forEach((opt, index) => {
         let btn = document.createElement("button");
-        btn.textContent = answer;
-        btn.onclick = () => nextQuestion(answer);
+        btn.textContent = opt;
+        btn.onclick = () => nextQuestion(index);
         answersEl.appendChild(btn);
     });
 
     updateProgress();
 }
 
-function nextQuestion(choice) {
-    if (choice === questions[currentQuestion].a[0]) score++;
+function nextQuestion(choiceIndex) {
+    if (choiceIndex === 0) scores.jet++;
+    if (choiceIndex === 1) scores.prop++;
+    if (choiceIndex === 2) scores.engineer++;
 
     currentQuestion++;
 
@@ -51,7 +51,7 @@ function nextQuestion(choice) {
 }
 
 function updateProgress() {
-    let percent = ((currentQuestion) / questions.length) * 100;
+    let percent = (currentQuestion / questions.length) * 100;
     progressBar.style.width = percent + "%";
     progressText.textContent = Math.floor(percent) + "%";
 }
@@ -70,7 +70,7 @@ function showResult() {
         result = "🛠️ Aircraft Engineer — Analytical, innovative, and built for problem-solving.";
     }
 
-    document.getElementById("quiz-screen").innerHTML = `
+    document.getElementById("quiz-container").innerHTML = `
         <div class="result">
             <h3>Your AeroMatch:</h3>
             <p>${result}</p>
@@ -94,6 +94,7 @@ function drawGauge(canvasId, label, value, max, color) {
 
     ctx.strokeStyle = "#fff";
     ctx.lineWidth = 2;
+
     for (let i = 0; i <= max; i += max / 20) {
         let angle = (i / max) * Math.PI * 1.5 - Math.PI * 0.75;
         let x1 = center + Math.cos(angle) * radius;
@@ -110,6 +111,7 @@ function drawGauge(canvasId, label, value, max, color) {
     let angle = (value / max) * Math.PI * 1.5 - Math.PI * 0.75;
     ctx.strokeStyle = color;
     ctx.lineWidth = 4;
+
     ctx.beginPath();
     ctx.moveTo(center, center);
     ctx.lineTo(center + Math.cos(angle) * (radius - 20),
