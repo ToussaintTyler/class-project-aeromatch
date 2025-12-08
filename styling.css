@@ -11,6 +11,24 @@ header {
     padding: 20px;
 }
 
+.plane-fly {
+    position: absolute;
+    top: 50px;
+    left: -100px; 
+    width: 80px; 
+    opacity: 0.8;
+    animation: flyAcross 15s linear infinite;
+    z-index: 1000; 
+}
+
+@keyframes flyAcross {
+    0% { left: -100px; top: 50px; transform: rotate(0deg); }
+    25% { top: 100px; transform: rotate(5deg); }
+    50% { left: 100%; top: 150px; transform: rotate(0deg); }
+    75% { top: 100px; transform: rotate(-5deg); }
+    100% { left: -100px; top: 50px; transform: rotate(0deg); }
+}
+
 #quiz-container {
     width: 90%;
     max-width: 600px;
@@ -68,22 +86,4 @@ button:hover {
     display: flex;
     justify-content: center;
     gap: 20px;
-}
-
-.plane-fly {
-    position: absolute;
-    top: 50px; /* starting vertical position */
-    left: -100px; /* start off-screen */
-    width: 80px; /* size of airplane */
-    opacity: 0.8;
-    animation: flyAcross 15s linear infinite;
-    z-index: 1000; /* stay on top */
-}
-
-@keyframes flyAcross {
-    0% { left: -100px; top: 50px; transform: rotate(0deg); }
-    25% { top: 100px; transform: rotate(5deg); }
-    50% { left: 100%; top: 150px; transform: rotate(0deg); }
-    75% { top: 100px; transform: rotate(-5deg); }
-    100% { left: -100px; top: 50px; transform: rotate(0deg); }
 }
